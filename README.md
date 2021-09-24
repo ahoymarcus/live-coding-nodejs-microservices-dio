@@ -47,40 +47,6 @@ Dependências:
 
 
 
-<br />
-
-### A
-![Resultado da chamada da 3ª rota em post users](/public/images/)
-
-
-
-
-<br />
-
-### A
-![Resultado da chamada da 4ª rota em put users-id](/public/images/)
-
-
-
-<br />
-
-### A
-![Resultado da chamada da 5ª rota em delete users-id](/public/images/)
-
-
-
-<br />
-
-### T
-![Testando um tratamento de erro genérico](/public/images/)
-
-
-
-<br />
-
-### T
-![Testando um tratamento de erro customizado](/public/images/)
-
 
 
 
