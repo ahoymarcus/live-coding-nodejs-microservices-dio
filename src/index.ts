@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 
 import express, { Request, Response, NextFunction} from 'express';
 import errorHandler from './middlewares/error-handler.middleware';
+import bearerAuthenticationMiddleware from './middlewares/bearer-authentication.middleware';
 
 import statusRoute from './routes/status.route';
 import userRoute from './routes/user.route';
@@ -24,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Configuração das Rotas
 app.use(statusRoute);
-app.use(userRoute);
+app.use(bearerAuthenticationMiddleware, userRoute);
 app.use(authorizationRoute);
 
 
