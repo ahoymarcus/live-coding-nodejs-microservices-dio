@@ -6,6 +6,9 @@ import errorHandler from './middlewares/error-handler.middleware';
 
 import statusRoute from './routes/status.route';
 import userRoute from './routes/user.route';
+import authorizationRoute from './routes/authorization.route';
+
+
 
 
 const app = express();
@@ -22,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 // Configuração das Rotas
 app.use(statusRoute);
 app.use(userRoute);
-
+app.use(authorizationRoute);
 
 
 
