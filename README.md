@@ -42,11 +42,6 @@ Dependências:
 
 <br />
 
-### A
-![Resultado da chamada da 2ª rota em get users-id](/public/images/)
-
-
-
 
 
 
