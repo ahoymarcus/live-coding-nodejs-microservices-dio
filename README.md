@@ -34,7 +34,7 @@ Dependências:
 
 <br />
 
-### Testando o tipo de autenticação HTTP Basic Auth  
+### Testando o tipo de autenticação HTTP -> Basic Auth  
 ![Testando o basic auth do protocolo http](/public/images/testando-o-basic-auth-do-protocolo-http.png)
 
 
@@ -56,7 +56,7 @@ Dependências:
 
 <br />
 
-### Apresentando a quarta rota: PUT /users/:uuid 
+### A
 ![Resultado da chamada da 4ª rota em put users-id](/public/images/)
 
 
