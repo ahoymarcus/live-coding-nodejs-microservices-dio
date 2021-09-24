@@ -2,6 +2,7 @@ import { Request, Response, NextFunction, Router } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
 import DatabaseError from '../models/errors/database.error.model';
+import bearerAuthenticationMiddleware from './middlewares/bearer-authentication.middleware';
 
 import userRepository from '../repositories/user.repository';
 
@@ -16,7 +17,7 @@ import userRepository from '../repositories/user.repository';
 
 const usersRoute = Router();
 
-usersRoute.get('/users', async (req: Request, res: Response, next: NextFunction) => {
+usersRoute.get('/users', bearerAuthenticationMiddleware, async (req: Request, res: Response, next: NextFunction) => {
 	// Mock object
 	// const users = [{ userName: 'Renan' }];
 	
@@ -28,7 +29,7 @@ usersRoute.get('/users', async (req: Request, res: Response, next: NextFunction)
 	res.status(StatusCodes.OK).send(users);
 });
 
-usersRoute.get('/users/:uuid', async (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
+usersRoute.get('/users/:uuid', bearerAuthenticationMiddleware, async (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
 	
 	try {
 		const uuid = req.params.uuid;
@@ -44,7 +45,7 @@ usersRoute.get('/users/:uuid', async (req: Request<{ uuid: string }>, res: Respo
 });
 
 
-usersRoute.post('/users', async (req: Request, res: Response, next: NextFunction) => {
+usersRoute.post('/users', bearerAuthenticationMiddleware, async (req: Request, res: Response, next: NextFunction) => {
 	const newUser = req.body;
 	console.log(req.body);
 	
@@ -54,7 +55,7 @@ usersRoute.post('/users', async (req: Request, res: Response, next: NextFunction
 });
 
 
-usersRoute.put('/users/:uuid', async (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
+usersRoute.put('/users/:uuid', bearerAuthenticationMiddleware, async (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
 	const uuid = req.params.uuid;
 	
 	const modifiedUser = req.body;
@@ -67,7 +68,7 @@ usersRoute.put('/users/:uuid', async (req: Request<{ uuid: string }>, res: Respo
 }); 
 
 
-usersRoute.delete('/users/:uuid', async (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
+usersRoute.delete('/users/:uuid', bearerAuthenticationMiddleware, async (req: Request<{ uuid: string }>, res: Response, next: NextFunction) => {
 	const uuid = req.params.uuid;
 	
 	console.log("Deletado user id: ", uuid);

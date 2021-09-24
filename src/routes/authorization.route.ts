@@ -7,11 +7,22 @@ import ForbiddenError from '../models/errors/forbidden.error.model';
 
 /*ATENÇÃO: veja que o middleware está sendo registrado aqui, PORQUE ele está sendo designado apenas para esta rota específica*/
 import basicAuthenticationMiddleware from '../middlewares/basic-authentication.middleware';
+import bearerAuthenticationMiddleware from '../middleware/bearer-authentication.middleware';
 
 
 
 
 const authorizationRoute = Router();
+
+
+/*
+	ATENÇÃO: esta rota TEM que vir antes da outra, porque é mais específica, SENÃO, ela nunca seria chamada!!!!
+	Observe que nesta rota, com a inserção do middleware bearerAuthenticationMiddleware, já vai haver uma validação prévia, de modo que em não havendo erro passado à frente pelo middleware, tudo o que resta é responder com 200...
+*/
+authorizationRoute.post('/token/validate', bearerAuthenticationMiddleware, (req: Request, res: Response, next: NextFunction) => {
+	res.sendStatus(StatusCodes.OK);
+});
+
 
 
 authorizationRoute.post('/token', basicAuthenticationMiddleware, async (req: Request, res: Response, next: NextFunction) => {
@@ -53,6 +64,11 @@ authorizationRoute.post('/token', basicAuthenticationMiddleware, async (req: Req
 
 
 
+
+
 export default authorizationRoute;
+
+
+
 
 

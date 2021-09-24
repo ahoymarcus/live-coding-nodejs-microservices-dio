@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 
 import express, { Request, Response, NextFunction} from 'express';
 import errorHandler from './middlewares/error-handler.middleware';
-import bearerAuthenticationMiddleware from './middlewares/bearer-authentication.middleware';
 
 import statusRoute from './routes/status.route';
 import userRoute from './routes/user.route';
@@ -25,8 +24,12 @@ app.use(express.urlencoded({ extended: true }));
 
 // Configuração das Rotas
 app.use(statusRoute);
-app.use(bearerAuthenticationMiddleware, userRoute);
 app.use(authorizationRoute);
+
+/*
+	ATENÇÃO: o middleware bearerAuthenticationMiddleware poderia ser registrado aqui, seguindo essa ordem para ele atuar apenas nas rotas daque para baixo!!!
+*/
+app.use(userRoute);
 
 
 
