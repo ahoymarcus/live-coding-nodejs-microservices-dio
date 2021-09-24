@@ -25,7 +25,8 @@ Dependências:
 - Http-status-codes
 - Pg (node-postgres)
 - @types/pg
-
+- Jsonwebtoken
+- @types/jsonwebtoken
 
 
 

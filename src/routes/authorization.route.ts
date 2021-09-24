@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction, Router } from 'express';
 import { Buffer } from 'buffer';
+import JWT from 'jsonwebtoken';
+import { StatusCodes } from 'http-status-codes';
 
 import ForbiddenError from '../models/errors/forbidden.error.model';
 
@@ -48,6 +50,26 @@ authorizationRoute.post('/token', async (req: Request, res: Response, next: Next
 		
 		const user = await userRepository.findByUsernameAndPassword(username, password);
 		console.log(user);
+		
+		if (!user) {
+			throw new ForbiddenError('Usuário ou senha inválidos!');
+		}
+		
+		
+		/*Montando o JWT*/
+		JWT.sign({ username: user.uuid }, 'my_secret_key', {
+			subject: user?.uuid
+		});
+		
+		const jwtPayload = { username: user.uuid };
+		const jwtOptions = { subject: user?.uuid };
+		const secretKey = 'my_secret_key';
+		
+		const jwt = JWT.sign(jwtPayload, jwtOptions, jwtOptions);
+		
+		res.status(StatusCodes.OK).json({ token: jwt });
+		
+		
 		
 	} catch (error) {
 		next(error);
