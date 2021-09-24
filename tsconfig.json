@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig.json to read more about this file */
+
+    /* Language and Environment */
+    "target": "es5",                                     
+
+    /* Modules */
+    "module": "commonjs",
+		"moduleResolution": "node",                       /* Specify how TypeScript looks up a file from a given module specifier. */                               
+    "rootDir": "src",                                  /* Specify the root folder within your source files. */
+		"typeRoots": [
+			"./src/@types",
+			"./node_modules/@types"
+		],                                  /* Specify multiple folders that act like `./node_modules/@types`. */
+		
+    /* Emit */
+		"outDir": "./dist",                                   /* Specify an output folder for all emitted files. */
+		"removeComments": true,                           /* Disable emitting comments. */
+    "esModuleInterop": true,                             
+    "forceConsistentCasingInFileNames": true,            
+    /* Type Checking */
+    "strict": true,                                      
+    /* Completeness */
+    "skipLibCheck": true                                 
+  }
+}
