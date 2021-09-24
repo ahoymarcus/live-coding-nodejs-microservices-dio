@@ -11,7 +11,6 @@ import basicAuthenticationMiddleware from '../middlewares/basic-authentication.m
 
 
 
-
 const authorizationRoute = Router();
 
 
@@ -24,7 +23,14 @@ authorizationRoute.post('/token', basicAuthenticationMiddleware, async (req: Req
 	
 			
 	try {
-				
+		
+		const user = req.user;
+		
+		// Validação apenas preventiva, caso o middleware seja alterado
+		if (!user) {
+			throw new ForbiddenError('Usuário não informado!');
+		}
+		
 		/*Montando o JWT*/
 		// JWT.sign({ username: user.uuid }, 'my_secret_key', {
 			// subject: user?.uuid
