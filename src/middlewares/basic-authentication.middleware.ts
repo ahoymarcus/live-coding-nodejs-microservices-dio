@@ -51,6 +51,9 @@ async function basicAuthenticationMiddleware(req, res, next) {
 		*/
 		req.user = user;
 		
+		// ATENÇÃO: não esquecer que o middleware precisa dar prosseguimento ao caminho da requisição com o next()
+		next();
+		
 	} catch (error) {
 		next(error);
 	}
